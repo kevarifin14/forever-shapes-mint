@@ -82,14 +82,14 @@ router.post(async (req, res) => {
       let builder = transactionBuilder()
         .add(
           transferSol(context, {
-            amount: sol(price * 0.9875),
+            amount: sol(price * 0.9825),
             destination: context.identity.publicKey,
             source: createNoopSigner(receiverAddress),
           })
         )
         .add(
           transferSol(context, {
-            amount: sol(price * 0.0125),
+            amount: sol(price * 0.0175),
             destination: publicKey(
               "DqkVCGMBamaRDBQGe1kPzJbhDpon1o9oLM8An6RDZbFd"
             ),
