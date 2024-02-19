@@ -82,8 +82,17 @@ router.post(async (req, res) => {
       let builder = transactionBuilder()
         .add(
           transferSol(context, {
-            amount: sol(price),
+            amount: sol(price * 0.9875),
             destination: context.identity.publicKey,
+            source: createNoopSigner(receiverAddress),
+          })
+        )
+        .add(
+          transferSol(context, {
+            amount: sol(price * 0.0125),
+            destination: publicKey(
+              "DqkVCGMBamaRDBQGe1kPzJbhDpon1o9oLM8An6RDZbFd"
+            ),
             source: createNoopSigner(receiverAddress),
           })
         )
@@ -98,7 +107,8 @@ router.post(async (req, res) => {
             nonce: asset.compression.leaf_id,
             index: asset.compression.leaf_id,
           }).addRemainingAccounts(proof)
-        );
+        )
+        .setFeePayer(createNoopSigner(context.identity.publicKey));
 
       const serializedTransaction = context.transactions.serialize(
         await builder.buildAndSign(context)

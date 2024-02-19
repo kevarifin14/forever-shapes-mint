@@ -1,65 +1,55 @@
 const colors = {
-  neonGreen: {
-    50: "#f7fcf9",
-    100: "#eff9f3",
-    200: "#d6f1e0",
-    300: "#bde8cd",
-    400: "#8cd7a8",
-    500: "#5BC682",
-    600: "#52b275",
-    700: "#449562",
-    800: "#37774e",
-    900: "#2d6140",
+  alabaster: {
+    50: "#fafafa",
+    100: "#efefef",
+    200: "#dcdcdc",
+    300: "#bdbdbd",
+    400: "#989898",
+    500: "#7c7c7c",
+    600: "#656565",
+    700: "#525252",
+    800: "#464646",
+    900: "#3d3d3d",
+    950: "#292929",
   },
-  deepPurple: {
-    50: "#f4f4f5",
-    100: "#e8e8ea",
-    200: "#c6c6cb",
-    300: "#a3a3ab",
-    400: "#5e5f6d",
-    500: "#191A2E",
-    600: "#171729",
-    700: "#131423",
-    800: "#0f101c",
-    900: "#0c0d17",
-  },
-  lightPurple: {
-    50: "#fcfbfe",
-    100: "#f8f7fc",
-    200: "#eeebf8",
-    300: "#e3dff4",
-    400: "#cfc8eb",
-    500: "#bab0e3",
-    600: "#a79ecc",
-    700: "#8c84aa",
-    800: "#706a88",
-    900: "#5b566f",
+  black: {
+    50: "#f6f6f6",
+    100: "#e7e7e7",
+    200: "#d1d1d1",
+    300: "#b0b0b0",
+    400: "#888888",
+    500: "#6d6d6d",
+    600: "#5d5d5d",
+    700: "#4f4f4f",
+    800: "#454545",
+    900: "#3d3d3d",
+    950: "#000000",
   },
 };
 
-const primaryColor = colors.neonGreen;
+const primaryColor = colors.black;
 const primary = {
-  light: primaryColor[400],
-  DEFAULT: primaryColor[500],
-  dark: primaryColor[600],
+  light: primaryColor[900],
+  DEFAULT: primaryColor[950],
+  dark: primaryColor[950],
   ...primaryColor,
 };
 
-const lightColor = colors.lightPurple;
+const lightColor = colors.alabaster;
 const light = {
-  light: colors.white,
+  light: "#ffffff",
   DEFAULT: lightColor[50],
   dark: lightColor[100],
   accent: lightColor[300],
   ...lightColor,
 };
 
-const darkColor = colors.deepPurple;
+const darkColor = colors.black;
 const dark = {
-  accent: darkColor[400],
-  light: darkColor[500],
-  DEFAULT: darkColor[800],
-  dark: darkColor[900],
+  accent: darkColor[600],
+  light: darkColor[800],
+  DEFAULT: darkColor[900],
+  dark: darkColor[950],
   ...darkColor,
 };
 

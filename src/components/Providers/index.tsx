@@ -20,7 +20,7 @@ export function Providers({ children }: ProvidersProps) {
   const wallets = [new PhantomWalletAdapter(), new SolflareWalletAdapter()];
 
   return (
-    <ThemeProvider attribute="class">
+    <ThemeProvider attribute="class" defaultTheme="light">
       <QueryClientProvider client={new QueryClient()}>
         <ConnectionProvider endpoint={endpoint}>
           <WalletProvider wallets={wallets} autoConnect>
