@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import { Container } from "../Container";
 import { Navbar } from "./Navbar";
 import Head from "next/head";
 import { Footer } from "./Footer";
@@ -15,11 +14,13 @@ export const Layout = ({ children }: LayoutProps) => {
         <title>{process.env.NEXT_PUBLIC_APP_NAME}</title>
       </Head>
 
-      <Container className="min-h-screen">
-        <Navbar />
-        {children}
-      </Container>
-      <Footer />
+      <div>
+        <div className="min-h-screen">
+          <Navbar />
+          {children}
+        </div>
+        <Footer />
+      </div>
     </>
   );
 };

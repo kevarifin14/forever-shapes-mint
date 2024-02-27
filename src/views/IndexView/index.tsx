@@ -56,9 +56,13 @@ export const IndexView: React.FC = () => {
         )}
       </div>
 
-      <div className="px-16">
+      <div className="px-16 space-y-8">
         <Card className="space-y-8 p-8">
-          <MediaObject title={metadataData?.name} size="4xl" />
+          <MediaObject
+            title="SHAPES Mint"
+            description="Shapes mint order is random and requires a Solana wallet containing SOL"
+            size="3xl"
+          />
 
           <div className="space-y-2">
             <MediaObject
@@ -97,6 +101,14 @@ export const IndexView: React.FC = () => {
             <ConnectWalletButton type="primary" block size="lg" />
           )}
         </Card>
+
+        <div className="flex items-center flex-col space-y-4">
+          <p className="text-dark-600">Powered By</p>
+          <div className="flex space-x-2 items-center">
+            <img src="/underdog.png" className="h-12" />
+            <img src="/helius.svg" className="h-7" />
+          </div>
+        </div>
       </div>
     </Container>
   );
