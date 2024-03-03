@@ -105,8 +105,12 @@ export const IndexView: React.FC = () => {
         <div className="flex items-center flex-col space-y-4">
           <p className="text-dark-600">Powered By</p>
           <div className="flex space-x-2 items-center">
-            <img src="/underdog.png" className="h-12" />
-            <img src="/helius.svg" className="h-7" />
+            <a href="https://underdogprotocol.com" target="_blank">
+              <img src="/underdog.png" className="h-12" />
+            </a>
+            <a href="https://helius.xyz/" target="_blank">
+              <img src="/helius.svg" className="h-7" />
+            </a>
           </div>
         </div>
       </div>
