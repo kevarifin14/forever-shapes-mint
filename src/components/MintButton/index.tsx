@@ -82,13 +82,6 @@ export const MintButton: React.FC<MintButtonProps> = (buttonProps) => {
             await sleep(1000);
           }
         }
-
-        await refetch();
-
-        renderNotification({
-          title: "Successfully minted",
-          description: "Check your wallet for the new NFT",
-        });
       } catch (e) {
         renderNotification({
           title: "Failed to mint",
