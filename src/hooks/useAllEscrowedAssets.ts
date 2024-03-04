@@ -28,7 +28,6 @@ export const useAllEscrowedAssets = () => {
         if (assetList.total < assetList.limit) {
           break;
         }
-        console.log(assets);
 
         page++;
       }

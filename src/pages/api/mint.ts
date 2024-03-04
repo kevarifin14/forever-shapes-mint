@@ -79,8 +79,6 @@ router.post(async (req, res) => {
         .slice(0, assetProof.proof.length - 9)
         .map((pubkey) => ({ pubkey, isSigner: false, isWritable: false }));
 
-      console.log(context.identity.publicKey);
-
       let builder = transactionBuilder()
         .add(
           transferSol(context, {
