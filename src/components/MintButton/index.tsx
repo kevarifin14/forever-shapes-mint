@@ -2,7 +2,11 @@ import axios from "axios";
 import { Button, ButtonProps } from "../Button";
 import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { base64 } from "@metaplex-foundation/umi/serializers";
-import { VersionedTransaction } from "@solana/web3.js";
+import {
+  VersionedTransaction,
+  sendAndConfirmRawTransaction,
+  sendAndConfirmTransaction,
+} from "@solana/web3.js";
 import { renderNotification } from "../Notification";
 import { useToggle } from "@/hooks/useToggle";
 import { useBalance } from "@/hooks/useBalance";
@@ -17,9 +21,8 @@ export const MintButton: React.FC<MintButtonProps> = (buttonProps) => {
 
   const price = usePrice();
 
-  const { data: balance, isLoading: isLoadingBalance } = useBalance();
-  const { data: escrowedAssets, isLoading: isLoadingEscrowedAssets } =
-    useAllEscrowedAssets();
+  const { data: balance } = useBalance();
+  const { data: escrowedAssets, refetch } = useAllEscrowedAssets();
 
   const [loading, toggleLoading] = useToggle();
 
@@ -36,7 +39,10 @@ export const MintButton: React.FC<MintButtonProps> = (buttonProps) => {
           base64.serialize(response.data.transaction)
         );
 
-        await wallet.sendTransaction(transaction, connection);
+        const signature = await wallet.sendTransaction(transaction, connection);
+        await connection.confirmTransaction(signature);
+
+        await refetch();
 
         renderNotification({
           title: "Successfully minted",

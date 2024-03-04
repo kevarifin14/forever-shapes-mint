@@ -9,28 +9,32 @@ export const useAllEscrowedAssets = () => {
   const escrowAddress = useEscrowAddress();
   const collectionMintAddress = useCollectionMintAddress();
 
-  return useQuery(["all-escrowed-assets", escrowAddress], async () => {
-    const assets: DasApiAsset[] = [];
-    let page = 1;
+  return useQuery(
+    ["all-escrowed-assets", escrowAddress],
+    async () => {
+      const assets: DasApiAsset[] = [];
+      let page = 1;
 
-    while (true) {
-      const assetList = await context.rpc.searchAssets({
-        owner: escrowAddress,
-        grouping: ["collection", collectionMintAddress],
-        limit: 1000,
-        page,
-      });
+      while (true) {
+        const assetList = await context.rpc.searchAssets({
+          owner: escrowAddress,
+          grouping: ["collection", collectionMintAddress],
+          limit: 1000,
+          page,
+        });
 
-      assets.push(...assetList.items);
+        assets.push(...assetList.items);
 
-      if (assetList.total < assetList.limit) {
-        break;
+        if (assetList.total < assetList.limit) {
+          break;
+        }
+        console.log(assets);
+
+        page++;
       }
-      console.log(assets);
 
-      page++;
-    }
-
-    return assets;
-  });
+      return assets;
+    },
+    { refetchOnWindowFocus: false }
+  );
 };

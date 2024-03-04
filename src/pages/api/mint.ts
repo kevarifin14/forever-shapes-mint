@@ -79,28 +79,30 @@ router.post(async (req, res) => {
         .slice(0, assetProof.proof.length - 9)
         .map((pubkey) => ({ pubkey, isSigner: false, isWritable: false }));
 
+      console.log(context.identity.publicKey);
+
       let builder = transactionBuilder()
         .add(
           transferSol(context, {
             amount: sol(price * 0.9825),
+            source: createNoopSigner(receiverAddress),
             destination: publicKey(
               "BxA88YB8vEXXNWCUYq5pksgtpouQ4ps4F4w4tmX4DD7d"
             ),
-            source: createNoopSigner(receiverAddress),
           })
         )
         .add(
           transferSol(context, {
             amount: sol(price * 0.0175),
+            source: createNoopSigner(receiverAddress),
             destination: publicKey(
               "DqkVCGMBamaRDBQGe1kPzJbhDpon1o9oLM8An6RDZbFd"
             ),
-            source: createNoopSigner(receiverAddress),
           })
         )
         .add(
           transfer(context, {
-            leafOwner: context.identity.publicKey,
+            leafOwner: context.identity,
             newLeafOwner: publicKey(receiverAddress),
             merkleTree: publicKey(asset.compression.tree),
             root: publicKeyBytes(assetProof.root),
@@ -110,7 +112,7 @@ router.post(async (req, res) => {
             index: asset.compression.leaf_id,
           }).addRemainingAccounts(proof)
         )
-        .setFeePayer(createNoopSigner(context.identity.publicKey));
+        .setFeePayer(createNoopSigner(receiverAddress));
 
       const serializedTransaction = context.transactions.serialize(
         await builder.buildAndSign(context)
